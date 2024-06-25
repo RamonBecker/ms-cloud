@@ -6,7 +6,7 @@ namespace RestWithASPNETUdemy.Controllers;
 [Route("[controller]")]
 public class CalculatorController : ControllerBase
 {
- 
+
     private readonly ILogger<CalculatorController> _logger;
 
     public CalculatorController(ILogger<CalculatorController> logger)
@@ -27,8 +27,15 @@ public class CalculatorController : ControllerBase
         return BadRequest("Invalid input");
     }
 
-    private bool IsNumeric(string firstNumber)
+    private bool IsNumeric(string strNumber)
     {
-        throw new NotImplementedException();
+        double number;
+
+        var isNumber = double.TryParse(strNumber, 
+                                       System.Globalization.NumberStyles.Any, 
+                                       System.Globalization.NumberFormatInfo.InvariantInfo, 
+                                       out number);
+
+        return isNumber;
     }
 }
