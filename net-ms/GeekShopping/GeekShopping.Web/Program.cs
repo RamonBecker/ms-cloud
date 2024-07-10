@@ -1,11 +1,24 @@
+using GeekShopping.Web.Services;
+using GeekShopping.Web.Services.IServices;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+var key = builder.Configuration["ServiceUrls: ProductAPI"];
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient<IProductService, ProductService>(
+    
+    c => c.BaseAddress = new Uri(key)
+    
+    );
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
