@@ -44,7 +44,7 @@ namespace GeekShopping.Web.Controllers
 
             var model = await _productService.FindProductById(id);
 
-            if(model != null)
+            if (model != null)
                 return View(model);
 
 
@@ -62,6 +62,30 @@ namespace GeekShopping.Web.Controllers
                     return RedirectToAction(nameof(ProductIndex));
 
             }
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> ProductDelete(int id)
+        {
+
+            var model = await _productService.FindProductById(id);
+
+            if (model != null)
+                return View(model);
+
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProductDelete(ProductModel model)
+        {
+            var response = await _productService.DeleteProduct(model.Id);
+
+            if (response)
+                return RedirectToAction(nameof(ProductIndex));
+
 
             return View(model);
         }
