@@ -4,17 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-var key = builder.Configuration["ServiceUrls: ProductAPI"];
-
-builder.Services.AddControllersWithViews();
-builder.Services.AddHttpClient<IProductService, ProductService>(
-    
-    c => c.BaseAddress = new Uri(key)
-    
+builder.Services.AddHttpClient<IProductService, ProductService>(c =>
+        c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"])
     );
 
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
