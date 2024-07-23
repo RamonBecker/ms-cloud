@@ -25,7 +25,7 @@ namespace GeekShopping.IdentityServer.Configuration
                 new ApiScope(name: "delete", "Delete data."),
             };
 
-        public static IEnumerable<Client> Client =>
+        public static IEnumerable<Client> Clients =>
             new List<Client>()
             {
                 new Client
