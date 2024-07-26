@@ -4,6 +4,7 @@
 
 using System;
 using Duende.IdentityServer.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityServerHost.Quickstart.UI
@@ -14,6 +15,13 @@ namespace IdentityServerHost.Quickstart.UI
         /// Checks if the redirect URI is for a native client.
         /// </summary>
         /// <returns></returns>
+        /// 
+        internal static async Task<bool> GetSchemeSupportsSignOutAsync(this HttpContext context, string scheme)
+        {
+            var provider = context.RequestServices.GetRequiredService<IAuthenticationHandlerProvider>();
+            var handler = await provider.GetHandlerAsync(context, scheme);
+            return (handler is IAuthenticationSignOutHandler);
+        }
         public static bool IsNativeClient(this AuthorizationRequest context)
         {
             return !context.RedirectUri.StartsWith("https", StringComparison.Ordinal)
