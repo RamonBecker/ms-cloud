@@ -1,5 +1,6 @@
 using Duende.IdentityServer.Services;
 using GeekShopping.IdentityServer.Configuration;
+using GeekShopping.IdentityServer.Initializer;
 using GeekShopping.IdentityServer.Model;
 using GeekShopping.IdentityServer.Model.Context;
 using Microsoft.AspNetCore.Hosting;
@@ -45,6 +46,7 @@ namespace GeekShopping.IdentityServer
                     .AddInMemoryClients(IdentityConfiguration.Clients)
                     .AddAspNetIdentity<ApplicationUser>();
 
+            services.AddScoped<IDBInitializer, DBInitializer>();
 
             builder.AddDeveloperSigningCredential();
 
@@ -52,7 +54,8 @@ namespace GeekShopping.IdentityServer
         }
 
         public void Configure(IApplicationBuilder app,
-            IWebHostEnvironment env
+            IWebHostEnvironment env,
+            IDBInitializer initializer
 
         )
         {
@@ -72,7 +75,7 @@ namespace GeekShopping.IdentityServer
             app.UseIdentityServer();
             app.UseAuthorization();
 
-            //initializer.Initialize();
+            initializer.Initialize();
 
             app.UseEndpoints(endpoints =>
             {

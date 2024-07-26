@@ -2,6 +2,6 @@
 {
     public interface IDBInitializer
     {
-        public void Initializer();
+        public void Initialize();
     }
 }
