@@ -16,12 +16,14 @@ namespace IdentityServerHost.Quickstart.UI
         /// </summary>
         /// <returns></returns>
         /// 
-        internal static async Task<bool> GetSchemeSupportsSignOutAsync(this HttpContext context, string scheme)
+
+        public static async Task<bool> GetSchemeSupportsSignOutAsync(this HttpContext context, string scheme)
         {
             var provider = context.RequestServices.GetRequiredService<IAuthenticationHandlerProvider>();
             var handler = await provider.GetHandlerAsync(context, scheme);
             return (handler is IAuthenticationSignOutHandler);
         }
+
         public static bool IsNativeClient(this AuthorizationRequest context)
         {
             return !context.RedirectUri.StartsWith("https", StringComparison.Ordinal)
