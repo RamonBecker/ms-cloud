@@ -18,7 +18,7 @@ namespace GeekShopping.Web.Controllers
             _productService = productService;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> Index()
         {
             var token = await HttpContext.GetTokenAsync("access_token");
 
@@ -43,7 +43,7 @@ namespace GeekShopping.Web.Controllers
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");
 
-            return RedirectToAction(nameof(IndexAsync));
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Logout()
