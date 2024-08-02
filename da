@@ -1,0 +1,224 @@
+[33mcommit 511e0af6a8ecf1fe318a03ced894d1d1b63687c3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Aug 2 08:25:49 2024 -0300
+
+    Ajustando ProductIndex
+
+[33mcommit 395d3acafca4e4c35b89ecc394aa13a968767d74[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Aug 2 08:14:19 2024 -0300
+
+    Setando o JWT Token no Header das Operações
+
+[33mcommit 7f48df8c9448e8da6db8efd1f97d77f2cada7c42[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Thu Aug 1 11:45:35 2024 -0300
+
+    Implementando o Cadastro de Novos Usuários
+
+[33mcommit 68eaaf7bb764a3f9e028783f6c5ffb0221b49ef0[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 30 14:41:44 2024 -0300
+
+     Ajustando a Classe AccountController para Suportar o Login
+
+[33mcommit c0c265df579b845daa4eaf8fc35f079fa6582cc9[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 30 09:50:18 2024 -0300
+
+    Implementando o Redirecionamento para a Tela de Login
+
+[33mcommit 12133b285c48b58471a63f5b1577d19e1545a279[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Mon Jul 29 11:37:30 2024 -0300
+
+    Adicionando Autenticação ao Swagger (Open API)
+
+[33mcommit 1eeb976a39c324b298a1d77bf7db9ed98e30e4b0[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Mon Jul 29 11:23:38 2024 -0300
+
+     Adicionando às Configurações de Segurança ao GeekShopping.Product
+
+[33mcommit 95860321e60ce775e0d0a4bf534779946578f4d1[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Mon Jul 29 11:13:46 2024 -0300
+
+    Adicionando às Configurações de Segurança ao GeekShopping.Web
+
+[33mcommit 1d6156ff236a266d80a36d7f017dba506eb7899e[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Jul 26 11:35:50 2024 -0300
+
+    Restringindo o Acesso Apenas à Usuários Logados
+
+[33mcommit 398628df3b8345c2c54d992e83f1eee8d7ae36d3[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Jul 26 11:25:41 2024 -0300
+
+     Finalizando a Implementação de DbInitializer
+
+[33mcommit 0372ec1c8c4959316ce0ebae352c4d7397f85244[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Jul 26 11:03:05 2024 -0300
+
+    Criando a Classe Responsável por Inicializar o Banco de Dados
+
+[33mcommit 649a6142055a0dd05acfb812057de3b44ef856a4[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Jul 26 08:58:04 2024 -0300
+
+    Habilitando HTTPS e Setando as Portas
+
+[33mcommit 2786f1b99fc52f58d5b0cb337930e280c679e55e[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 23 11:05:52 2024 -0300
+
+    Adicionando Configurações de Banco de Dados e Segurança
+
+[33mcommit f48d6acc02ef606f663423e877016fadde2a8979[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 23 10:53:08 2024 -0300
+
+    Configurando Clients no Identity Server
+
+[33mcommit 7b718a8ad115db8b757744ff42232e335247a0a6[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 23 10:43:44 2024 -0300
+
+     Implementando a classe IdentityConfiguration
+
+[33mcommit 6fdbc93241d4ce4221e699e0e0e824c46500d6a6[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Fri Jul 19 07:01:27 2024 -0300
+
+    Adição do DbContext ao Identity Server
+
+[33mcommit 5bdab95325ed5a32e0991910667e88d48d687efd[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 17 10:04:14 2024 -0300
+
+    Implementando a Tela de Delete de Produtos
+
+[33mcommit 7ee0220f5a236328446575cb2859ae8ebab9e3dd[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 17 09:53:31 2024 -0300
+
+    Implementando a Tela de Update de Produtos
+
+[33mcommit 69a2def3b385529ae702b6204f25d7a88c738612[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 17 06:51:10 2024 -0300
+
+    Implementando o Método Responsável por Cadastrar Produtos
+
+[33mcommit 512305da33173cdb3a1d4ae8d0b13c123db6c4a6[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 17 06:45:59 2024 -0300
+
+    Adicionando os Botões de Update e Delete
+
+[33mcommit 4ae59259ea918d1f01a48054e102dc23dd16f536[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 17 06:42:13 2024 -0300
+
+    Implementando a Tela de Listagem de Produtos
+
+[33mcommit ff86c0b272cc43d01be225dd154e59c2d719f66c[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 11:16:58 2024 -0300
+
+    Ajustando o layout principal
+
+[33mcommit 569b34a4e0bf2000cf32b43ca621cce0791cbd97[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 10:07:11 2024 -0300
+
+    Injeção de Dependência da Classe ProductService na Classe Startup
+
+[33mcommit 82553eb9fd25e65a38e2c72f0dc00e66beb652ee[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 09:53:31 2024 -0300
+
+    Implementando a Classe ProductService
+
+[33mcommit aa513c7e4c4d212fcb1e5a6805b2f485ba4ecd6e[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 07:03:29 2024 -0300
+
+    Implementando os Métodos PostAsJson e PutAsJson em HttpClientExtensions
+
+[33mcommit bb2fb9028a1b463dd80b7fad5a176ae57d34e070[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 06:56:59 2024 -0300
+
+    Implementando a Classe HttpClientExtensions
+
+[33mcommit cf09febf7d92c5815b79a46b15a44dcdd506217d[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 06:45:32 2024 -0300
+
+    Definindo as Operações da Interface IProductService
+
+[33mcommit c051f13bd975124ca35112eb820e30e688fc2953[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 06:44:52 2024 -0300
+
+    Definindo as Operações da Interface IProductService
+
+[33mcommit 328608fb2fe408c336ffdd470a32806ad35a558f[m
+Merge: f4fc7c7 00866db
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Wed Jul 10 06:39:08 2024 -0300
+
+    Update files
+
+[33mcommit f4fc7c739d88c7e705055c5dfe6b4fd019c2f16f[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 16:44:22 2024 -0300
+
+    Update files
+
+[33mcommit bbdf475c82d894a4bc063645a80c661b1217dbfa[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 16:36:27 2024 -0300
+
+    Definindo a Estrutura Responsável por Consumir o Microsserviço de Produto
+
+[33mcommit f303dd388b12a978c0c15b78dcb4665a842d209f[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 16:12:33 2024 -0300
+
+    Configurando o Seed Data no Microsserviço de Produtos
+
+[33mcommit b79c99a4f7983d89c32d04109224bde9da033cd6[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 16:05:28 2024 -0300
+
+    Implementando as Operações POST, PUT e DELETE
+
+[33mcommit b7786337d7fa8cc23a22869e19417f76d30670cc[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 15:44:39 2024 -0300
+
+    Implementando o Controller do Microsserviço de Produtos
+
+[33mcommit b3a9a68bf0829c9accd99a1db477eac90674c8af[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 15:32:11 2024 -0300
+
+    Adicionando imagens dos produtos
+
+[33mcommit 5256531b16c4c4df04c03ff5e4f25d582bcfad9b[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Tue Jul 9 15:24:19 2024 -0300
+
+    Finalizando a Implementação do Repositório de Produtos
+
+[33mcommit f0f84b60246fadfb711009f76bb3a12fbbcc6c45[m
+Author: Ramon Becker <44611131+RamonBecker@users.noreply.github.com>
+Date:   Sun Jul 7 16:39:28 2024 -0300
+
+    Iniciando a Implementação do Repositório de Produtos
+
+
