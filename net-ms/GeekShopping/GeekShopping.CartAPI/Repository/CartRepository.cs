@@ -62,19 +62,54 @@ namespace GeekShopping.CartAPI.Repository
                 _context.CartHeaders.Add(cart.CartHeader);
                 await _context.SaveChangesAsync();
 
-                var cartDetail = cart.CartDetails.FirstOrDefault();
+                var findCartDetail = cart.CartDetails.FirstOrDefault();
 
-                if (cartDetail != null)
+                if (findCartDetail != null)
                 {
-                    cartDetail.CartHeaderId = cart.CartHeader.Id;
-                    cartDetail.Product = null;
-                    _context.CartDetails.Add(cartDetail);
+                    findCartDetail.CartHeaderId = cart.CartHeader.Id;
+                    findCartDetail.Product = null;
+                    _context.CartDetails.Add(findCartDetail);
                     await _context.SaveChangesAsync();
                 }
             }
+            else
+            {
 
+                var cartDetail = await _context.CartDetails.AsNoTracking().FirstOrDefaultAsync(
+                    p => p.ProductId == vo.CartDetails.FirstOrDefault().ProductId &&
+                    p.CartHeaderId == cartHeader.Id
+                    );
 
-            throw new NotImplementedException();
+                var findCartDetail = cart.CartDetails.FirstOrDefault();
+
+                if (cartDetail == null)
+                {
+
+                    if (findCartDetail != null)
+                    {
+                        findCartDetail.CartHeaderId = cart.CartHeader.Id;
+                        findCartDetail.Product = null;
+                        _context.CartDetails.Add(findCartDetail);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                else
+                {
+
+                    if (findCartDetail != null)
+                    {
+
+                        findCartDetail.Product = null;
+                        findCartDetail.Count += cartDetail.Count;
+                        findCartDetail.Id = cartDetail.Id;
+                        findCartDetail.CartHeaderId = cartDetail.CartHeaderId;
+                        _context.CartDetails.Update(findCartDetail);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+
+            return _mapper.Map<CartVO>(cart);
         }
     }
 }
