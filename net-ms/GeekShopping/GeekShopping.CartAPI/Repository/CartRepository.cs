@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using GeekShopping.CartAPI.Data.ValueObjects;
+using GeekShopping.CartAPI.Model;
 using GeekShopping.CartAPI.Model.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.CartAPI.Repository
 {
@@ -15,33 +17,63 @@ namespace GeekShopping.CartAPI.Repository
             _context = context;
             _mapper = mapper;
         }
-        public Task<bool> ApplyCoupon(string userId, string couponCode)
+        public async Task<bool> ApplyCoupon(string userId, string couponCode)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> ClearCart(string userId)
+        public async Task<bool> ClearCart(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<CartVO> FindCartByUserId(string userId)
+        public async Task<CartVO> FindCartByUserId(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveCoupon(string userId)
+        public async Task<bool> RemoveCoupon(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveFromCart(long cartDetailsId)
+        public async Task<bool> RemoveFromCart(long cartDetailsId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<CartVO> SaveOrUpdateCart(CartVO cart)
+        public async Task<CartVO> SaveOrUpdateCart(CartVO vo)
         {
+            Cart cart = _mapper.Map<Cart>(vo);
+
+            var product = await _context.Products.FirstOrDefaultAsync(p =>
+                                                                        p.Id == vo.CartDetails.FirstOrDefault().ProductId);
+            if (product == null)
+            {
+                _context.Products.Add(cart.CartDetails.FirstOrDefault().Product);
+                await _context.SaveChangesAsync();
+            }
+
+
+            var cartHeader = await _context.CartHeaders.AsNoTracking().FirstOrDefaultAsync(c => c.UserId == cart.CartHeader.UserId);
+
+            if (cartHeader == null)
+            {
+                _context.CartHeaders.Add(cart.CartHeader);
+                await _context.SaveChangesAsync();
+
+                var cartDetail = cart.CartDetails.FirstOrDefault();
+
+                if (cartDetail != null)
+                {
+                    cartDetail.CartHeaderId = cart.CartHeader.Id;
+                    cartDetail.Product = null;
+                    _context.CartDetails.Add(cartDetail);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+
             throw new NotImplementedException();
         }
     }
