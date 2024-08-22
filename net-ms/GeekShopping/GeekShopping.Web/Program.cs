@@ -11,13 +11,21 @@ builder.Services.AddHttpClient<IProductService, ProductService>(
     c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"])
 );
 
+builder.Services.AddHttpClient<ICartService, CartService>(
+    c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CartAPI"])
+);
+
+
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication(options => {
+builder.Services.AddAuthentication(options =>
+{
     options.DefaultScheme = "Cookies";
     options.DefaultChallengeScheme = "oidc";
 })
-    .AddCookie("Cookies", c => { c.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+    .AddCookie("Cookies", c =>
+    {
+        c.ExpireTimeSpan = TimeSpan.FromMinutes(10);
 
         c.Cookie.SameSite = SameSiteMode.None;
         c.Cookie.SecurePolicy = CookieSecurePolicy.Always;
