@@ -64,6 +64,8 @@ namespace GeekShopping.Web.Controllers
 
             cartDetails.Add(cartDetail);
 
+            cart.CartDetails = cartDetails;
+
             var response = await _cartService.AddItemToCart(cart, token);
 
             if (response != null)
