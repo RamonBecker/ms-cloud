@@ -24,6 +24,21 @@ namespace GeekShopping.Web.Controllers
             return View(await FindUserCart());
         }
 
+        public async Task<IActionResult> Remove(int id)
+        {
+
+            var token = await HttpContext.GetTokenAsync("access_token");
+
+            var userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
+
+            var response = await _cartService.RemoveFromCart(id, token);
+
+            if (response)
+                return RedirectToAction(nameof(CartIndex));
+
+            return View();
+        }
+
         private async Task<CartViewModel> FindUserCart()
         {
             var token = await HttpContext.GetTokenAsync("access_token");
@@ -36,6 +51,9 @@ namespace GeekShopping.Web.Controllers
             {
                 foreach (var detail in response.CartDetails)
                 {
+                    if (!response.CartHeader.PurchaseAmount.HasValue)
+                        response.CartHeader.PurchaseAmount = 0;
+
                     response.CartHeader.PurchaseAmount += (detail.Product.Price * detail.Count);
                 }
             }
