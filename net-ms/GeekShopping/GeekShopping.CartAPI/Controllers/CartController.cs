@@ -26,7 +26,6 @@ namespace GeekShopping.CartAPI.Controllers
 			return base.Ok(cart);
 		}
 
-
 		[HttpPost("add-cart")]
 		public async Task<ActionResult<CartVO>> AddCart(CartVO vo)
 		{
@@ -37,7 +36,6 @@ namespace GeekShopping.CartAPI.Controllers
 
 			return base.Ok(cart);
 		}
-
 
 		[HttpPut("update-cart/{id}")]
 		public async Task<ActionResult<CartVO>> UpdateCart(CartVO vo)
@@ -60,7 +58,6 @@ namespace GeekShopping.CartAPI.Controllers
 
 			return base.Ok(status);
 		}
-
 
 		[HttpPost("apply-coupon")]
 		public async Task<ActionResult<CartVO>> ApplyCoupon(CartVO vo)
@@ -88,5 +85,16 @@ namespace GeekShopping.CartAPI.Controllers
 			return base.Ok(status);
 		}
 
-	}
+
+        [HttpPost("checkout")]
+        public async Task<ActionResult<CartVO>> Checkout()
+        {
+            var status = await _repository.RemoveCoupon(userId);
+
+            if (!status)
+                return NotFound();
+
+            return base.Ok(status);
+        }
+    }
 }
