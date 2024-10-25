@@ -75,6 +75,9 @@ builder.Services.AddSwaggerGen(c =>
      });
 });
 
+builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

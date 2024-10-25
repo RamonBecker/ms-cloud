@@ -40,6 +40,9 @@ builderServices.AddDeveloperSigningCredential();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
+
 var app = builder.Build();
 
 var initializer = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();

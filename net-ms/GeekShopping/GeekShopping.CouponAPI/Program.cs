@@ -74,6 +74,9 @@ builder.Services.AddSwaggerGen(c =>
 	 });
 });
 
+builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
