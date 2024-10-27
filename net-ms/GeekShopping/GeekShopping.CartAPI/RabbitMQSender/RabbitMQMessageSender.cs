@@ -40,7 +40,6 @@ namespace GeekShopping.CartAPI.RabbitMQSender
 
             channel.BasicPublish(exchange: "", routingKey: queueName, basicProperties: null, body: body);
 
-            throw new NotImplementedException();
         }
 
         private byte[] GetMessageAsByteArray(BaseMessage message)
