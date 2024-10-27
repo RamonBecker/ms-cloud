@@ -1,4 +1,4 @@
-﻿namespace GeekShopping.CartAPI.Model
+﻿namespace GeekShopping.OrderAPI.Model
 {
     public class Cart
     {

@@ -1,6 +1,6 @@
-﻿using GeekShopping.CartAPI.Data.ValueObjects;
+﻿using GeekShopping.OrderAPI.Data.ValueObjects;
 
-namespace GeekShopping.CartAPI.Repository
+namespace GeekShopping.OrderAPI.Repository
 {
     public interface ICartRepository
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GeekShopping.CartAPI.Migrations
+namespace GeekShopping.OrderAPI.Migrations
 {
     /// <inheritdoc />
     public partial class AddUpdate : Migration

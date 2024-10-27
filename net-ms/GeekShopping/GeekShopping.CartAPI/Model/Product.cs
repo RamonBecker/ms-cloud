@@ -1,8 +1,8 @@
-﻿using GeekShopping.CartAPI.Model.Base;
+﻿using GeekShopping.OrderAPI.Model.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GeekShopping.CartAPI.Model
+namespace GeekShopping.OrderAPI.Model
 {
     [Table("product")]
     public class Product
