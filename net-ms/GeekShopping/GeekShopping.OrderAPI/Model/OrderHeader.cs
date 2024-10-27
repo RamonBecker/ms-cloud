@@ -50,7 +50,7 @@ namespace GeekShopping.OrderAPI.Model
 
         [Column("payment_status")]
         public bool PaymentStatus { get; set; }
-        public IEnumerable<OrderDetail> OrderDetails { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
 
     }
 }

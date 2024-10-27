@@ -1,5 +1,6 @@
 ﻿
 using GeekShopping.OrderAPI.Messages;
+using GeekShopping.OrderAPI.Model;
 using GeekShopping.OrderAPI.Repository;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -54,7 +55,43 @@ namespace GeekShopping.OrderAPI.MessageConsumer
 
         private async Task ProcessOrder(CheckoutHeaderVO vo)
         {
-            throw new NotImplementedException();
+            OrderHeader order = new() 
+            { 
+                UserId = vo.UserId,
+                FirstName = vo.FirstName,
+                LastName = vo.LastName,
+                OrderDetails = new List<OrderDetail>(),
+                CardNumber = vo.CardNumber,
+                CouponCode = vo.CouponCode,
+                CVV = vo.CVV,
+                DiscountAmount = vo.DiscountAmount,
+                PurchaseAmount = vo.PurchaseAmount,
+                Email = vo.Email,
+                ExpiryMonthYear = vo.ExpiryMonthYear,
+                PurchaseTime = DateTime.Now,
+                PaymentStatus = false,
+                Phone = vo.Phone,
+                PurchaseDate = vo.DateTime
+                
+            };
+
+            foreach (var details in vo.CartDetails)
+            {
+                OrderDetail detail = new()
+                {
+                    ProductId = details.ProductId,
+                    ProductName = details.Product.Name,
+                    Price = details.Product.Price,
+                    Count = details.Count
+                };
+
+
+                order.TotalItens += details.Count;
+                order.OrderDetails.Add(detail);
+
+            }
+
+            await _repository.AddOrder(order);
         }
     }
 }
