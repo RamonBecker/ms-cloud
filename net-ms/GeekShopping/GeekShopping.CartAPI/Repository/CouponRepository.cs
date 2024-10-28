@@ -9,7 +9,12 @@ namespace GeekShopping.CartAPI.Repository
 	{
 		private readonly HttpClient _client;
 
-		public async Task<CouponVO> GetCouponByCode(string code, string token)
+        public CouponRepository(HttpClient client)
+        {
+            _client = client;
+        }
+
+        public async Task<CouponVO> GetCoupon(string code, string token)
 		{
 
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

@@ -109,7 +109,7 @@ namespace GeekShopping.OrderAPI.Controllers
 
 			if (!string.IsNullOrEmpty(vo.CouponCode))
 			{
-				var coupon = await _couponRepository.GetCouponByCode(vo.CouponCode, token);
+				var coupon = await _couponRepository.GetCoupon(vo.CouponCode, token);
 
 				if(vo.DiscountAmount != coupon.DiscountAmount)
 				{
