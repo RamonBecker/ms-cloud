@@ -1,4 +1,7 @@
+using GeekShopping.Email.MessageConsumer;
 using GeekShopping.Email.Model.Context;
+using GeekShopping.Email.Repository;
+using GeekShopping.OrderAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +18,12 @@ dbContextBuilder.UseMySql(
     connection,
     ServerVersion.AutoDetect(connection)
 );
+
+
+builder.Services.AddSingleton(new EmailRepository(dbContextBuilder.Options));
+builder.Services.AddScoped<IEmailRepository, EmailRepository>();
+builder.Services.AddHostedService<RabbitMQPaymentConsumer>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
