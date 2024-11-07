@@ -3,19 +3,21 @@ using RabbitMQ.Client.Events;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
+using GeekShopping.Email.Repository;
+using GeekShopping.Email.Messages;
 
 namespace GeekShopping.Email.MessageConsumer
 {
     public class RabbitMQPaymentConsumer : BackgroundService
     {
-        private readonly OrderRepository _repository;
+        private readonly EmailRepository _repository;
         private IConnection _connection;
         private IModel _channel;
         private const string EXCHANGE_NAME = "FanoutPaymentUpdateExchange";
         private string _queueName = "";
 
 
-        public RabbitMQPaymentConsumer(OrderRepository repository)
+        public RabbitMQPaymentConsumer(EmailRepository repository)
         {
             _repository = repository;
 
@@ -45,8 +47,8 @@ namespace GeekShopping.Email.MessageConsumer
             consumer.Received += (chanel, evet) =>
             {
                 var content = Encoding.UTF8.GetString(evet.Body.ToArray());
-                UpdatePaymentResultVO vo = JsonSerializer.Deserialize<UpdatePaymentResultVO>(content);
-                UpdatePaymentStatus(vo).GetAwaiter().GetResult();
+                UpdatePaymentResultMessage message = JsonSerializer.Deserialize<UpdatePaymentResultMessage>(content);
+                ProcessLogs(message).GetAwaiter().GetResult();
                 _channel.BasicAck(evet.DeliveryTag, false);
             };
 
@@ -55,11 +57,11 @@ namespace GeekShopping.Email.MessageConsumer
             return Task.CompletedTask;
         }
 
-        private async Task UpdatePaymentStatus(UpdatePaymentResultVO vo)
+        private async Task ProcessLogs(UpdatePaymentResultMessage message)
         {
             try
             {
-                await _repository.UpdateOrderPaymentStatus(vo.OrderId, vo.Status);
+                await _repository.LogEmail(message);
             }
             catch (Exception)
             {
