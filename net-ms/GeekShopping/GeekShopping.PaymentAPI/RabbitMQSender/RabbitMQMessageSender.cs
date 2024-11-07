@@ -13,7 +13,9 @@ namespace GeekShopping.PaymentAPIAPI.RabbitMQSender
         private readonly string _password;
         private readonly string _userName;
         private IConnection _connection;
-        private const string EXCHANGE_NAME = "FanoutPaymentUpdateExchange";
+        private const string EXCHANGE_NAME = "DirectPaymentUpdateExchange";
+        private const string PAYMENT_EMAIL_UPDATE_QUEUE_NAME = "PaymentEmailUpdateQueueName";
+        private const string PAYMENT_ORDER_UPDATE_QUEUE_NAME = "PaymentOrderUpdateQueueName";
 
         public RabbitMQMessageSender()
         {
@@ -30,12 +32,18 @@ namespace GeekShopping.PaymentAPIAPI.RabbitMQSender
                 using var channel = _connection.CreateModel();
 
 
-                channel.ExchangeDeclare(EXCHANGE_NAME, ExchangeType.Fanout, durable: false);
+                channel.ExchangeDeclare(EXCHANGE_NAME, ExchangeType.Direct, durable: false);
+                
+                channel.QueueDeclare(PAYMENT_EMAIL_UPDATE_QUEUE_NAME, false, false, false, null);
+                channel.QueueDeclare(PAYMENT_ORDER_UPDATE_QUEUE_NAME, false, false, false, null);
 
+                channel.QueueBind(PAYMENT_EMAIL_UPDATE_QUEUE_NAME, EXCHANGE_NAME, "PaymentEmail");
+                channel.QueueBind(PAYMENT_ORDER_UPDATE_QUEUE_NAME, EXCHANGE_NAME, "PaymentOrder");
 
                 byte[] body = GetMessageAsByteArray(message);
 
-                channel.BasicPublish(exchange: EXCHANGE_NAME, routingKey: "", basicProperties: null, body: body);
+                channel.BasicPublish(exchange: EXCHANGE_NAME, routingKey: "PaymentEmail", basicProperties: null, body: body);
+                channel.BasicPublish(exchange: EXCHANGE_NAME, routingKey: "PaymentOrder", basicProperties: null, body: body);
             }
 
         }
@@ -51,7 +59,7 @@ namespace GeekShopping.PaymentAPIAPI.RabbitMQSender
 
             };
 
-            var json = JsonSerializer.Serialize<UpdatePaymentResultMessage>((UpdatePaymentResultMessage) message, options);
+            var json = JsonSerializer.Serialize<UpdatePaymentResultMessage>((UpdatePaymentResultMessage)message, options);
 
             var body = Encoding.UTF8.GetBytes(json);
 
@@ -79,12 +87,12 @@ namespace GeekShopping.PaymentAPIAPI.RabbitMQSender
 
         private bool ConnectionExists()
         {
-            if (_connection !=  null) return true;
+            if (_connection != null) return true;
 
             CreateConnection();
             return _connection != null;
         }
 
-       
+
     }
 }

@@ -13,7 +13,7 @@ namespace GeekShopping.Email.MessageConsumer
         private readonly EmailRepository _repository;
         private IConnection _connection;
         private IModel _channel;
-        private const string EXCHANGE_NAME = "FanoutPaymentUpdateExchange";
+        private const string EXCHANGE_NAME = "DirectPaymentUpdateExchange";
         private string _queueName = "";
 
 
