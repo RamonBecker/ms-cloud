@@ -20,3 +20,4 @@ var app = builder.Build();
 
 app.UseOcelot();
 
+app.Run();
