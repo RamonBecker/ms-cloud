@@ -45,7 +45,7 @@ namespace GeekShopping.OrderAPI.Controllers
 			return base.Ok(cart);
 		}
 
-		[HttpPut("update-cart/{id}")]
+		[HttpPut("update-cart")]
 		public async Task<ActionResult<CartVO>> UpdateCart(CartVO vo)
 		{
 			var cart = await _cartRepository.SaveOrUpdateCart(vo);
